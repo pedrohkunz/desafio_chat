@@ -8,9 +8,12 @@ PORT = 8080
 def receber_mensagens(s):
     while True:
         data = s.recv(1024)
+
         if not data:
             break
+
         print(data.decode('utf-8'))
+
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
@@ -21,7 +24,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     print("Conectado ao chat. Digite seu nickname.")
     nickname = input("Nickname: ")
 
-    print(f"Seja bem vindo ao chat, {nickname}!")
+    print(f"Seja bem vindo(a) ao chat, {nickname}!")
     s.send(f"{nickname} entrou no chat!".encode("utf-8"))
 
     while True:
